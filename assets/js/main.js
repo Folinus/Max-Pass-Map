@@ -12,17 +12,27 @@ function initialize() {
     }
 
     var map = new google.maps.Map(document.getElementById("mapCanvas"), myOptions);
+    
+    // var directionsService = new google.maps.DirectionsService;
+    // var directionsDisplay = new google.maps.DirectionsRenderer;
+    // directionsDisplay.setMap(map);
+    // directionsDisplay.setPanel(document.getElementById('direction-panel'));
 
     setMarkers(map, sites);
     infowindow = new google.maps.InfoWindow({
         content: "loading..."
     });
 
-    var bikeLayer = new google.maps.BicyclingLayer();
-    bikeLayer.setMap(map);
+    // var bikeLayer = new google.maps.BicyclingLayer();
+    // bikeLayer.setMap(map);
+
+    // calculateAndDisplayRoute(directionsService, directionsDisplay);
 }
 
 var sites = [
+//Friends Houses
+    ['Golden, CO',39.7555,-105.2211,'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'],
+    ['Salt Lake City, UT',40.7608,-111.8910,'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'],
 //Max Pass
     ['Sunday River, ME', 44.4669484,-70.8476164,'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'],
     ['Sugarloaf, ME', 45.0540885,-70.3107054,'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'],
@@ -50,13 +60,19 @@ var sites = [
     ['Mt. Bachelor, OR', 43.9897989,-121.6868714,'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'],
     ['Boreal Mountain, CA', 39.3364571,-120.3521808,'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'],
     ['Lee Canyon, NV', 36.3037622,-115.6796317,'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'],
-//Other
+    //New 6 Mountains
+    ['Kicking Horse, BC', 51.2975688, -117.0504403,'http://maps.google.com/mapfiles/ms/icons/green-dot.png'],
+    ['Fernie, BC', 49.5069587, -115.09079, 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'],
+    ['Kimberly, BC', 49.6773784, -116.054696, 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'],
+    ['Nakiska, AB', 50.9427038, -115.1532872, 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'],
+    ['Stoneham, QC', 47.0269378, -71.3851933, 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'],
+    ['Mont-Sainte-Anne, QC', 47.075353, -70.9070917, 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'],
+    //Other Mountains
     ['Revelstoke, BC', 50.9583062,-118.1659692,'http://maps.google.com/mapfiles/ms/icons/red-dot.png'],
     ['Whistler, BC',50.1042369,-123.0717262,'http://maps.google.com/mapfiles/ms/icons/red-dot.png'],
     ['Alta, UT',40.590831,-111.6310716,'http://maps.google.com/mapfiles/ms/icons/red-dot.png'],
     ['Telluride, CO',37.9365535,-107.8485311,'http://maps.google.com/mapfiles/ms/icons/red-dot.png'],
-    ['Wolf Creek, Pagosa Springs, CO',37.5225621,-106.8094503,'http://maps.google.com/mapfiles/ms/icons/red-dot.png'],
-    ['Jackson Hole, WY',43.4745488,-110.7931499,'http://maps.google.com/mapfiles/ms/icons/red-dot.png']
+    ['Wolf Creek, Pagosa Springs, CO',37.5225621,-106.8094503,'http://maps.google.com/mapfiles/ms/icons/red-dot.png']
     // ['', , ,'http://maps.google.com/mapfiles/ms/icons/red-dot.png'],
     // ['', , ,'http://maps.google.com/mapfiles/ms/icons/red-dot.png'],
     // ['', , ,'http://maps.google.com/mapfiles/ms/icons/red-dot.png'],
@@ -86,6 +102,25 @@ function setMarkers(map, markers) {
         });
     }
 }
+
+  function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+
+    var origin = { "lat" : sites[0][1], "lng" : sites[0][2] };
+    var destination = { "lat" : sites[1][1], "lng" : sites[1][2] };
+
+    directionsService.route({
+      origin: origin,
+      destination: destination,
+      travelMode: 'DRIVING'
+    }, function(response, status) {
+      if (status === 'OK') {
+        directionsDisplay.setDirections(response);
+      } else {
+        window.alert('Directions request failed due to ' + status);
+      }
+    });
+  }
+
 //$(document).ready(function() {
 //    myFeature.init({});
 //});
