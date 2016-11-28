@@ -67,6 +67,9 @@ var sites = [
     ['Nakiska, AB', 50.9427038, -115.1532872, 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'],
     ['Stoneham, QC', 47.0269378, -71.3851933, 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'],
     ['Mont-Sainte-Anne, QC', 47.075353, -70.9070917, 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'],
+    //New Mountains
+    ['Crested Butte, CO', 38.89977584999999, -106.96543089999999, 'http://maps.google.com/mapfiles/ms/icons/green-purple.png'],
+    ['Eldora Mountain Resort, CO', 39.94041, -105.5825068, 'http://maps.google.com/mapfiles/ms/icons/green-purple.png'],
     //Other Mountains
     ['Revelstoke, BC', 50.9583062,-118.1659692,'http://maps.google.com/mapfiles/ms/icons/red-dot.png'],
     ['Whistler, BC',50.1042369,-123.0717262,'http://maps.google.com/mapfiles/ms/icons/red-dot.png'],
